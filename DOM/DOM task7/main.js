@@ -26,8 +26,12 @@ function ONsubmit(e) {
             email: emailInput.value
         };
         // converting to centarlised
+
         var myobj_centralised = JSON.stringify(myobj);
-        localStorage.setItem("details", myobj_centralised);
+        // using email id as key
+        localStorage.setItem(JSON.stringify(emailInput.value), myobj_centralised);
+
+        // appending the info
         userList.appendChild(li);
         nameInput.value = '';
         emailInput.value = '';

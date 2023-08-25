@@ -16,9 +16,18 @@ function ONsubmit(e) {
         var li = document.createElement('li');
         li.appendChild(document.createTextNode(`${nameInput.value} : ${emailInput.value}`));
 
-        //adding values to local storage
-        localStorage.setItem('name', nameInput.value);
-        localStorage.setItem('emai', emailInput.value);
+        // //adding values to local storage
+        // localStorage.setItem('name', nameInput.value);
+        // localStorage.setItem('email', emailInput.value);
+
+        // storing values in the form of object
+        var myobj = {
+            name: nameInput.value,
+            email: emailInput.value
+        };
+        // converting to centarlised
+        var myobj_centralised = JSON.stringify(myobj);
+        localStorage.setItem("details", myobj_centralised);
         userList.appendChild(li);
         nameInput.value = '';
         emailInput.value = '';

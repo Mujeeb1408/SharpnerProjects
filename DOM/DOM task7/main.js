@@ -14,7 +14,21 @@ function ONsubmit(e) {
         setTimeout(() => msg.remove(), 3000);
     } else {
         var li = document.createElement('li');
+        var del = document.createElement('button');
+        del.id = 'delete';
+        del.innerText = ' delete';
+        del.style.boxSizing = '100px';
+        // console.log(del);
         li.appendChild(document.createTextNode(`${nameInput.value} : ${emailInput.value}`));
+        li.appendChild(del);
+
+        // for removing li after delete btn is clicked
+        del.addEventListener('click', deleFunc);
+        var uu = document.getElementsByTagName('ul');
+        function deleFunc(e) {
+            userList.removeChild(li);
+        }
+
 
         // //adding values to local storage
         // localStorage.setItem('name', nameInput.value);

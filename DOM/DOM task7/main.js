@@ -1,6 +1,8 @@
 var myForm = document.querySelector('#my-form');
 var nameInput = document.querySelector('#name');
+
 var emailInput = document.querySelector('#email');
+
 var msg = document.querySelector('.msg');
 var userList = document.querySelector('#users');
 
@@ -17,7 +19,6 @@ function ONsubmit(e) {
         var del = document.createElement('button');
         del.id = 'delete';
         del.innerText = ' delete';
-        del.style.boxSizing = '100px';
         // console.log(del);
         li.appendChild(document.createTextNode(`${nameInput.value} : ${emailInput.value}`));
         li.appendChild(del);
@@ -27,6 +28,21 @@ function ONsubmit(e) {
         var uu = document.getElementsByTagName('ul');
         function deleFunc(e) {
             userList.removeChild(li);
+        }
+
+        //edit button
+        var editBtn = document.createElement('button');
+        editBtn.id = 'edit';
+        editBtn.innerText = 'Edit';
+        li.appendChild(editBtn);
+
+        // edit function
+        editBtn.addEventListener('click', editF);
+        function editF(e) {
+            localStorage.removeItem(myobj.email);
+            userList.removeChild(li);
+            document.querySelector('#name').value = myobj.name;
+            document.querySelector('#email').value = myobj.email;
         }
 
 
@@ -43,7 +59,7 @@ function ONsubmit(e) {
 
         var myobj_centralised = JSON.stringify(myobj);
         // using email id as key
-        localStorage.setItem(JSON.stringify(emailInput.value), myobj_centralised);
+        localStorage.setItem(emailInput.value, myobj_centralised);
 
         // appending the info
         userList.appendChild(li);
